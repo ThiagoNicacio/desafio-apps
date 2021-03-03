@@ -1,7 +1,9 @@
 package br.com.infoglobo.presentation.fragment
 
 import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import br.com.infoglobo.data.model.News
 import br.com.infoglobo.domain.ContentResult
 import br.com.infoglobo.domain.usecase.GetNewsUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -14,6 +16,8 @@ class HomeViewModel @ViewModelInject internal constructor(
 ) : ViewModel() {
 
     private val disposables = CompositeDisposable()
+    private val _news = MutableLiveData<List<News>>().apply { value = arrayListOf() }
+    val singleNews = MutableLiveData<News>().apply { value = null }
 
     init {
         getNewsUseCase.execute()
@@ -26,11 +30,12 @@ class HomeViewModel @ViewModelInject internal constructor(
     private fun handleGetNewsResult(responseResult: ContentResult){
         when(responseResult){
             is ContentResult.Success ->{
-                responseResult
+                val news = responseResult.content[0].content
+                _news.postValue(news)
+                if (news.size > 0)
+                    singleNews.postValue(news[0])
             }
-            is ContentResult.Failure ->{
-                responseResult
-            }
+            is ContentResult.Failure ->{  }
         }
     }
 

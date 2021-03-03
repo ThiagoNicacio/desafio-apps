@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <data>
         <variable
             name="viewModel"
             type="br.com.infoglobo.presentation.fragment.HomeViewModel" />
+
+        <import type="android.view.View"/>
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -59,7 +60,8 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewModel.singleNews == null ? View.GONE : View.VISIBLE}">
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -68,6 +70,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:src="@drawable/image_placeholder"
+                    app:loadImage="@{viewModel.singleNews.images}"
                     android:id="@+id/image"
                     android:scaleType="centerCrop"/>
 
@@ -97,6 +100,7 @@
                             android:paddingHorizontal="4dp"
                             android:paddingVertical="5dp"
                             tools:text="Brasil"
+                            android:text="@{viewModel.singleNews.section.name}"
                             android:textAllCaps="true"
                             android:textStyle="bold"
                             android:textSize="14sp"
@@ -107,14 +111,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/titleNews"
-                            android:textAllCaps="true"
+                            android:textAllCaps="false"
                             android:textStyle="normal"
                             android:layout_marginTop="10dp"
-                            android:textSize="14sp"
+                            android:textSize="16sp"
                             android:textColor="@android:color/white"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            tools:text="Sérgio Cabral é denunciado pela sexta vez na Lava-Jato"/>
+                            tools:text="Sérgio Cabral é denunciado pela sexta vez na Lava-Jato"
+                            android:text="@{viewModel.singleNews.title}"/>
 
                     </LinearLayout>
 
