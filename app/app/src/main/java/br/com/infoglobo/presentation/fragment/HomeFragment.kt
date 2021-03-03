@@ -24,6 +24,7 @@ class HomeFragment : Fragment() {
 
         binding.let {
             it.lifecycleOwner = this
+            it.viewModel = viewModel
         }
 
         binding.toolbarMenu.setOnClickListener { Toast.makeText(requireContext(), getString(R.string.in_progress), Toast.LENGTH_SHORT).show() }

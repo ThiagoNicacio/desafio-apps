@@ -60,7 +60,9 @@ dependencies {
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$rootProject.hilt_viewmodel_version"
     implementation "androidx.hilt:hilt-work:$rootProject.hilt_worker_version"
     kapt "androidx.hilt:hilt-compiler:$rootProject.hilt_worker_version"
-
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rx_android2_version"
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rx_java2_version"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rootProject.rx_kotlin_version"
 
     // UI
     implementation "androidx.appcompat:appcompat:$rootProject.app_compat_version"
@@ -81,5 +83,5 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp_logging_version"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofit_version"
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit_version"
-
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofit_version"
 }
