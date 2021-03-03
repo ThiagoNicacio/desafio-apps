@@ -1,4 +1,4 @@
-package br.com.infoglobo.presentation.fragment
+package br.com.infoglobo.presentation.fragment.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import br.com.infoglobo.R
 import br.com.infoglobo.databinding.HomeFragmentBinding
 import br.com.infoglobo.presentation.adapter.NewsAdapter
@@ -34,6 +35,13 @@ class HomeFragment : Fragment() {
             it?.let { list->
                 if (list.size > 1) adapter.replaceItems(list.subList(1, list.size))
                 else adapter.replaceItems(list)
+            }
+        }
+
+        binding.image.setOnClickListener {
+            viewModel.singleNews.value?.let {news ->
+                val direction = HomeFragmentDirections.homeToDetails(news)
+                it.findNavController().navigate(direction)
             }
         }
 

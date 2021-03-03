@@ -1,4 +1,4 @@
-package br.com.infoglobo.presentation.fragment
+package br.com.infoglobo.presentation.fragment.home
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData

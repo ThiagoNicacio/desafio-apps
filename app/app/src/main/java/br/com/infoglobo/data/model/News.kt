@@ -1,6 +1,7 @@
 package br.com.infoglobo.data.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class News(
     @SerializedName("autores") val authors : ArrayList<String>,
@@ -15,4 +16,4 @@ data class News(
     val url : String,
     @SerializedName("urlOriginal") val originalUrl : String,
     @SerializedName("imagens") val images : ArrayList<Image>
-)
+) : Serializable

@@ -8,7 +8,21 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="br.com.infoglobo.presentation.fragment.HomeFragment"
+        android:name="br.com.infoglobo.presentation.fragment.home.HomeFragment"
         android:label="home_fragment"
-        tools:layout="@layout/home_fragment" />
+        tools:layout="@layout/home_fragment" >
+        <action
+            android:id="@+id/home_to_details"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="br.com.infoglobo.presentation.fragment.details.DetailsFragment"
+        android:label="details_fragment"
+        tools:layout="@layout/details_fragment" >
+        <argument
+            android:name="news"
+            app:argType="br.com.infoglobo.data.model.News"/>
+    </fragment>
+
 </navigation>
