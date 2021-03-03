@@ -1,6 +1,7 @@
 package br.com.infoglobo.presentation.fragment
 
 import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.infoglobo.data.model.News
@@ -17,6 +18,7 @@ class HomeViewModel @ViewModelInject internal constructor(
 
     private val disposables = CompositeDisposable()
     private val _news = MutableLiveData<List<News>>().apply { value = arrayListOf() }
+    val news : LiveData<List<News>> = _news
     val singleNews = MutableLiveData<News>().apply { value = null }
 
     init {

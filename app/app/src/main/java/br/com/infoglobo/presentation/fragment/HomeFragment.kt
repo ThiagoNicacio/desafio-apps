@@ -9,12 +9,14 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import br.com.infoglobo.R
 import br.com.infoglobo.databinding.HomeFragmentBinding
+import br.com.infoglobo.presentation.adapter.NewsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel by viewModels()
+    private val adapter = NewsAdapter(arrayListOf())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,6 +27,14 @@ class HomeFragment : Fragment() {
         binding.let {
             it.lifecycleOwner = this
             it.viewModel = viewModel
+            it.recycler.adapter = adapter
+        }
+
+        viewModel.news.observe(viewLifecycleOwner){
+            it?.let { list->
+                if (list.size > 1) adapter.replaceItems(list.subList(1, list.size))
+                else adapter.replaceItems(list)
+            }
         }
 
         binding.toolbarMenu.setOnClickListener { Toast.makeText(requireContext(), getString(R.string.in_progress), Toast.LENGTH_SHORT).show() }
