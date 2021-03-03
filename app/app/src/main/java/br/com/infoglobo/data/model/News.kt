@@ -7,6 +7,7 @@ data class News(
     @SerializedName("autores") val authors : ArrayList<String>,
     @SerializedName("informePublicitario") val publicityReport: Boolean,
     @SerializedName("subTitulo") val subtitle : String,
+    @SerializedName("texto") val text : String,
     @SerializedName("atualizadoEm") val updated : String,
     val id : Long,
     @SerializedName("publicadoEm") val publishedIn: String,
