@@ -29,7 +29,6 @@ class DetailsFragment : Fragment() {
 
         viewModel.apply { bound(args.news) }
 
-
         return binding.root
     }
 }

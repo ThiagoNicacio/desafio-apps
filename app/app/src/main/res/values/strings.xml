@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">O Globo</string>
     <string name="in_progress">Em progresso</string>
+    <string name="by">Por</string>
 </resources>

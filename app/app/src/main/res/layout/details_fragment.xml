@@ -6,6 +6,7 @@
         <variable
             name="viewModel"
             type="br.com.infoglobo.presentation.fragment.details.DetailsViewModel"/>
+        <import type="android.view.View"/>
     </data>
 
     <LinearLayout
@@ -84,9 +85,59 @@
                     android:textColor="@android:color/black"
                     android:gravity="center"/>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:orientation="horizontal"
+                    android:visibility="@{viewModel.news.authors.empty ? View.GONE : View.VISIBLE}"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/by"
+                        android:textStyle="bold"
+                        android:textAllCaps="true"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:textColor="@color/toolbar_background"
+                        android:text="@{viewModel.news.authors}"
+                        tools:text="Por"
+                        android:textStyle="bold"
+                        android:textAllCaps="true"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginVertical="2dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_clock_icon"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:text="@{viewModel.news.formattedDate}"
+                        tools:text="08/03/17 15:50"/>
+
+                </LinearLayout>
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp">
 
                     <ImageView
                         android:layout_width="match_parent"
@@ -127,7 +178,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/description"
-                    android:layout_marginVertical="15dp"
+                    android:layout_marginVertical="10dp"
                     android:layout_marginHorizontal="15dp"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
