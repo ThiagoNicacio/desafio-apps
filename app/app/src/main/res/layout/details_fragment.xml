@@ -18,38 +18,12 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
+            style="@style/ToolBarStyle.Event"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:minHeight="?attr/actionBarSize"
             android:background="@color/toolbar_background"
-            >
-
-            <androidx.coordinatorlayout.widget.CoordinatorLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/toolbar_back"
-                    android:src="@drawable/ic_arrow_back_icon"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-                    tools:text="Brasil"
-                    android:textAllCaps="true"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"
-                    android:textColor="@android:color/white"
-                    android:text="@{viewModel.news.section.name}"
-                    android:id="@+id/toolbar_title" />
-
-            </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-        </androidx.appcompat.widget.Toolbar>
+            />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -106,7 +80,7 @@
                         android:layout_marginStart="5dp"
                         android:textColor="@color/toolbar_background"
                         android:text="@{viewModel.news.authors}"
-                        tools:text="Por"
+                        tools:text="O globo"
                         android:textStyle="bold"
                         android:textAllCaps="true"/>
 

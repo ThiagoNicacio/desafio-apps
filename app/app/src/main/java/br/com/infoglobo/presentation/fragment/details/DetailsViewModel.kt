@@ -12,4 +12,11 @@ class DetailsViewModel @ViewModelInject internal constructor(): ViewModel() {
     fun bound(news : News) {
         this.news.value = news
     }
+
+    fun getUrlShare() : String{
+        news.value?.url?.let {
+            return it
+        }
+        return ""
+    }
 }
