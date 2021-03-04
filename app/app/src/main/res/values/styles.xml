@@ -25,4 +25,7 @@
         <item name="android:textSize">22sp</item>
     </style>
 
+    <style name="ProgressbarTheme">
+        <item name="colorAccent">@color/toolbar_background</item>
+    </style>
 </resources>

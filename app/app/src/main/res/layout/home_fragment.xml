@@ -8,134 +8,151 @@
         <import type="android.view.View"/>
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".presentation.fragment.home.HomeFragment">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_height="wrap_content"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:minHeight="?attr/actionBarSize"
-            android:background="@color/toolbar_background"
-            >
-            <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:minHeight="?attr/actionBarSize"
+                android:background="@color/toolbar_background"
+                >
+                <androidx.coordinatorlayout.widget.CoordinatorLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/toolbar_menu"
+                        android:src="@drawable/menu_icon"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                        android:text="@string/app_name"
+                        android:textAllCaps="true"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"
+                        android:textColor="@android:color/white"
+                        android:id="@+id/toolbar_title" />
+
+                </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+
+
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/toolbar_menu"
-                    android:src="@drawable/menu_icon"/>
-
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-                    android:text="@string/app_name"
-                    android:textAllCaps="true"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"
-                    android:textColor="@android:color/white"
-                    android:id="@+id/toolbar_title" />
+                    android:orientation="vertical">
 
-            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="@{viewModel.singleNews == null ? View.GONE : View.VISIBLE}">
 
-        </androidx.appcompat.widget.Toolbar>
-
-
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="@{viewModel.singleNews == null ? View.GONE : View.VISIBLE}">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    app:layout_constraintDimensionRatio="H,2:1.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@drawable/image_placeholder"
-                    app:loadImage="@{viewModel.singleNews.images}"
-                    android:id="@+id/image"
-                    android:scaleType="centerCrop"/>
-
-                    <LinearLayout
+                    <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:background="@drawable/gradient_black"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="H,2:1"
-                        tools:ignore="MissingConstraints"
-                        tools:layout_editor_absoluteX="0dp" />
+                        app:layout_constraintDimensionRatio="H,2:1.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:src="@drawable/image_placeholder"
+                        app:loadImage="@{viewModel.singleNews.images}"
+                        android:id="@+id/image"
+                        android:scaleType="centerCrop"/>
 
-                    <LinearLayout
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:background="@drawable/gradient_black"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="H,2:1"
+                            tools:ignore="MissingConstraints"
+                            tools:layout_editor_absoluteX="0dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="H,2:0.5"
+                            tools:ignore="MissingConstraints"
+                            android:layout_marginHorizontal="10dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/section"
+                                android:background="@android:color/black"
+                                android:paddingHorizontal="4dp"
+                                android:paddingVertical="5dp"
+                                tools:text="Brasil"
+                                android:text="@{viewModel.singleNews.section.name}"
+                                android:textAllCaps="true"
+                                android:textStyle="bold"
+                                android:textSize="14sp"
+                                android:textColor="@android:color/white"
+                                android:layout_gravity="center"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/titleNews"
+                                android:textAllCaps="false"
+                                android:textStyle="normal"
+                                android:layout_marginTop="10dp"
+                                android:textSize="16sp"
+                                android:textColor="@android:color/white"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                tools:text="Sérgio Cabral é denunciado pela sexta vez na Lava-Jato"
+                                android:text="@{viewModel.singleNews.title}"/>
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="H,2:0.5"
-                        tools:ignore="MissingConstraints"
-                        android:layout_marginHorizontal="10dp"
-                        android:orientation="vertical">
+                        android:layout_height="match_parent"
+                        android:nestedScrollingEnabled="true"
+                        android:id="@+id/recycler"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/section"
-                            android:background="@android:color/black"
-                            android:paddingHorizontal="4dp"
-                            android:paddingVertical="5dp"
-                            tools:text="Brasil"
-                            android:text="@{viewModel.singleNews.section.name}"
-                            android:textAllCaps="true"
-                            android:textStyle="bold"
-                            android:textSize="14sp"
-                            android:textColor="@android:color/white"
-                            android:layout_gravity="center"/>
+                </LinearLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/titleNews"
-                            android:textAllCaps="false"
-                            android:textStyle="normal"
-                            android:layout_marginTop="10dp"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/white"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            tools:text="Sérgio Cabral é denunciado pela sexta vez na Lava-Jato"
-                            android:text="@{viewModel.singleNews.title}"/>
+            </androidx.core.widget.NestedScrollView>
 
-                    </LinearLayout>
+        </LinearLayout>
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.nonBlockingLoading ? View.VISIBLE : View.GONE}"
+            android:theme="@style/ProgressbarTheme"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:nestedScrollingEnabled="true"
-                    android:id="@+id/recycler"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-
-            </LinearLayout>
-
-        </androidx.core.widget.NestedScrollView>
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

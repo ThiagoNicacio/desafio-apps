@@ -21,6 +21,8 @@ class HomeViewModel @ViewModelInject internal constructor(
     val news : LiveData<List<News>> = _news
     val singleNews = MutableLiveData<News>().apply { value = null }
 
+    val nonBlockingLoading = MutableLiveData<Boolean>().apply { value = false }
+
     init {
         getNewsUseCase.execute()
             .subscribeOn(Schedulers.io())
@@ -30,6 +32,7 @@ class HomeViewModel @ViewModelInject internal constructor(
     }
 
     private fun handleGetNewsResult(responseResult: ContentResult){
+        nonBlockingLoading.postValue(responseResult == ContentResult.Loading)
         when(responseResult){
             is ContentResult.Success ->{
                 val news = responseResult.content[0].content
